@@ -1,17 +1,24 @@
 package main
 
 import (
-	"fmt"
+	"log"
 
-	route "github.com/Mateuscristofori/praticing_golang/application/routes"
+	kafka "github.com/Mateuscristofori/praticing_golang/application/infra/kafka"
+	"github.com/joho/godotenv"
 )
 
-func main() {
-	route := route.Route{
-		ID:       "1",
-		ClientID: "1",
+func init() {
+	err := godotenv.Load()
+
+	if err != nil {
+		log.Fatal("Error loading .env file")
 	}
-	route.LoadPositions()
-	stringJson, _ := route.ExportJsonPositions()
-	fmt.Println(stringJson[0])
+}
+
+func main() {
+
+	producer := kafka.NewKafkaProducer()
+
+	kafka.Publish("Olá", "readtest", producer)
+
 }

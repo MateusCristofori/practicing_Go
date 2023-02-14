@@ -1,5 +1,5 @@
-// Esse "cosumer" será responsável por pegar os tópicos do Kafka.
 package kafka
+// Esse "cosumer" será responsável por pegar os tópicos do Kafka.
 
 import (
 	"fmt"
@@ -45,12 +45,11 @@ func (k *KafkaConsumer) Consume() {
 
 	// Esse loop irá permitir que o consumer fique consumindo infinitamente as mensagens do Kafka.
 	for {
-		// Variável "mensagem" que irá ler as mensagens do kafka. O argumento "-1" da função representa o "timeOut" para a leitura de mensagens, nesse caso, o consumer não irá esperar para ler as mensagens.
+		// Variável "mensagem" que irá ler as mensagens do kafka. O argumento "-1" da função representa o "timeOut" para a leitura de mensagens, nesse caso, o consumer não irá esperar para ler as mensagens. Esse método retorna justamente o tipo "kafka.Message".
 		msg, err := c.ReadMessage(-1)
 		if err == nil {
 			// Caso o "err" seja "vazio" (caso não ocorra nenhum erro), a variável mensagem será passada para o atributo "MsgChan" do struct KafkaConsumer.
 			k.MsgChan <- msg
 		}
 	}
-
 }
