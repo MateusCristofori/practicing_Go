@@ -23,7 +23,7 @@ func NewKafkaProducer() *ckafka.Producer {
 }
 
 // Função que irá ser usada para publicar mensagens no Kafka através de um producer.
-func Publish(topic string, msg string, producer *ckafka.Producer) error {
+func Publish(msg string, topic string, producer *ckafka.Producer) error {
 	message := ckafka.Message{
 		// Estamos passando qual o tópico (vem por parâmetro), a partição é o próprio Kafka que define e o valor é um array de bytes que foi transformado de string para bytes usando "[]byte(msg)".
 		TopicPartition: ckafka.TopicPartition{Topic: &topic, Partition: ckafka.PartitionAny},

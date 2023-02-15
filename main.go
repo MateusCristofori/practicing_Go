@@ -19,6 +19,9 @@ func main() {
 
 	producer := kafka.NewKafkaProducer()
 
-	kafka.Publish("Olá", "readtest", producer)
+	kafka.Publish("Testando", "readtest", producer)
 
+	for {
+		_ = 1
+	}
 }
